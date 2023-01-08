@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -25,7 +25,25 @@ const GET_CATEGORIES = gql`
    }
    
 `
+/////////////////////////// For mutation ////////////////////////
+// const SET_CATEGORY=gql`
+// mutation($category:Category!){
 
+//   addCategory(category:$category){
+//     id
+//        title
+//        items {
+//           id
+//           name
+//           price
+//           imageUrl
+//        }
+
+//   }
+
+// }
+// `
+/////////////////////////// For mutation ////////////////////////
 const Category = () => {
   const { category } = useParams();
   const {loading,error,data}=useQuery(GET_CATEGORIES, {
@@ -33,7 +51,11 @@ const Category = () => {
       title:category
     }
   })
- 
+ /////////////////////////// For mutation ////////////////////////
+  // const [addCategory,{loading,error,data}]=useMutation(SET_CATEGORY)
+
+  // addCategory({variables:{category:anyCategoryObject}})
+/////////////////////////// For mutation ////////////////////////
   const [products, setProducts] = useState([]);
 
 
